@@ -13,11 +13,12 @@ import java.util.ArrayList;
 public class Usuario extends Persona{
     private String address;
     private ArrayList<Prestamo> prestamo;
+    
 
-    public Usuario(String address, ArrayList<Prestamo> prestamo, String name, int id, int number) {
+    public Usuario(String address, String name, int id, int number) {
         super(name, id, number);
         this.address = address;
-        this.prestamo = prestamo;
+        this.prestamo = new ArrayList<>();
     }
 
     public String getAddress() {

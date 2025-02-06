@@ -12,6 +12,8 @@ public class Prestamo {
     private Usuario usuario;
     private LocalDate fechaPrestamo;
     private LocalDate fechaEntrega;
+    private boolean entTiempo;
+    private boolean entTarde;
 
     public Prestamo(Libro libro, Usuario usuario, LocalDate fechaPrestamo, LocalDate fechaEntrega) {
         this.libro = libro;
@@ -48,9 +50,18 @@ public class Prestamo {
         return fechaEntrega;
     }
 
+    public String Obsrvacion() {
+        if (entTiempo) {
+            return "A TIEMPO";
+        }
+        if (entTarde) {
+            return "TARDE";
+        }
+        return "NO ENTREGADO";
+    }
+
     public void setFechaEntrega(LocalDate fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 
-    
 }
