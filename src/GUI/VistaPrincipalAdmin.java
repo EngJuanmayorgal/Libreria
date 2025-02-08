@@ -39,6 +39,7 @@ public class VistaPrincipalAdmin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Panel = new javax.swing.JPanel();
+        Amin = new javax.swing.JButton();
         Multas = new javax.swing.JButton();
         Usuarios = new javax.swing.JButton();
         Estadisticas = new javax.swing.JButton();
@@ -66,8 +67,16 @@ public class VistaPrincipalAdmin extends javax.swing.JFrame {
 
         jPanel1.add(Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 600, 410));
 
+        Amin.setText("ADMIN");
+        Amin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AminMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Amin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 140, 50));
+
         Multas.setText("MULTAS");
-        jPanel1.add(Multas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 140, 50));
+        jPanel1.add(Multas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 140, 50));
 
         Usuarios.setText("USUARIOS");
         Usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,7 +84,7 @@ public class VistaPrincipalAdmin extends javax.swing.JFrame {
                 UsuariosMouseClicked(evt);
             }
         });
-        jPanel1.add(Usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 140, 50));
+        jPanel1.add(Usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 140, 50));
 
         Estadisticas.setText("ESTADISTICAS");
         Estadisticas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -88,7 +97,7 @@ public class VistaPrincipalAdmin extends javax.swing.JFrame {
                 EstadisticasActionPerformed(evt);
             }
         });
-        jPanel1.add(Estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 140, 50));
+        jPanel1.add(Estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 140, 50));
 
         Prestamos.setText("PRESTAMOS");
         Prestamos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,7 +105,7 @@ public class VistaPrincipalAdmin extends javax.swing.JFrame {
                 PrestamosMouseClicked(evt);
             }
         });
-        jPanel1.add(Prestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 140, 50));
+        jPanel1.add(Prestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 140, 50));
 
         Libros.setText("LIBROS");
         Libros.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -104,7 +113,7 @@ public class VistaPrincipalAdmin extends javax.swing.JFrame {
                 LibrosMouseClicked(evt);
             }
         });
-        jPanel1.add(Libros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 140, 50));
+        jPanel1.add(Libros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 140, 50));
 
         Exit.setText("SALIR");
         Exit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -158,7 +167,12 @@ public class VistaPrincipalAdmin extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_ExitMouseClicked
 
+    private void AminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AminMouseClicked
+        cambiarPaguina(new PanelDatos());
+    }//GEN-LAST:event_AminMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Amin;
     private javax.swing.JButton Estadisticas;
     private javax.swing.JButton Exit;
     private javax.swing.JButton Libros;

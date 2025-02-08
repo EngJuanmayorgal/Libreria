@@ -14,7 +14,6 @@ public class GestorAdmin {
 
     public GestorAdmin(GestorLibreria gestor) {
         admins = new Serializacion().DeserializarAdmins();
-        System.out.println(admins.size());
         new Serializacion().SerializarAdmins(admins);
     }
 

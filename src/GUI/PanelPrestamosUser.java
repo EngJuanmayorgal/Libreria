@@ -29,7 +29,7 @@ public class PanelPrestamosUser extends javax.swing.JPanel {
     //Este metodo me carga todos los Prestamos
     public void CargarLibrosPrestados() {
         for (Prestamo prestamo : vs.gestor.usuario.getPrestamo()) {
-            TablaDinamico(prestamo.getLibro().getTitulo(), "" + prestamo.getUsuario().getId(),
+            TablaDinamico(prestamo.getIdPrestamo(),prestamo.getLibro().getTitulo(), "" + prestamo.getUsuario().getId(),
                     "" + prestamo.getFechaPrestamo(), "" + prestamo.getFechaEntrega(),
                     prestamo.getObservacion());
         }
@@ -38,17 +38,17 @@ public class PanelPrestamosUser extends javax.swing.JPanel {
 
     public void MostrarTabla() {
         Tabla.setDefaultRenderer(Object.class, new AcVista());
-        modelotabla.setColumnIdentifiers(new String[]{"TITULO",
-            "ID_USUARIO", "FECHA PRESTAMO", "FECHA ENTRAGAR", "OBSERVACION",""});
+        modelotabla.setColumnIdentifiers(new String[]{"ID","TITULO",
+            "ID_USUARIO", "FECHA PRESTAMO", "FECHA ENTREGAR", "OBSERVACION",""});
         Tabla.setModel(modelotabla);
         Tabla.setRowHeight(20);
         CargarLibrosPrestados();
     }
 //este metodo ingresa cosas en la tabla
 
-    public void TablaDinamico(String libro, String usuario, String Fprestamo, String Fentrga, String obs) {
+    public void TablaDinamico(int id,String libro, String usuario, String Fprestamo, String Fentrga, String obs) {
         boton1.setText("ENTRAGAR");
-        Object struct[] = {libro, usuario, Fprestamo, Fentrga, obs, boton1};
+        Object struct[] = {id,libro, usuario, Fprestamo, Fentrga, obs, boton1};
         modelotabla.addRow(struct);
 
     }
@@ -108,8 +108,10 @@ public class PanelPrestamosUser extends javax.swing.JPanel {
     private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
         columna = Tabla.getColumnModel().getColumnIndexAtX(evt.getX());
         row = evt.getY() / Tabla.getRowHeight();
-        if (columna == 5 ) {
-               vs.gestor.GenerarDevolucion(row,""+Tabla.getValueAt(row, 0));
+        if (columna == 6 ) {
+            
+               vs.gestor.GenerarDevolucion(row,Integer.parseInt(""+Tabla.getValueAt(row, 0))
+                       ,vs.gestor.gestor.EncontrarLibro(""+Tabla.getValueAt(row, 01)).getIdLibro());
                vs.cambiarPaguina(new PanelPrestamosUser(vs));
         }
     }//GEN-LAST:event_TablaMouseClicked

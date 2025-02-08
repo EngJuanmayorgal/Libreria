@@ -4,8 +4,6 @@
  */
 package GUI;
 
-import static GUI.PanelLibroUser.columna;
-import static GUI.PanelLibroUser.row;
 import Modelo.Prestamo;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,9 +26,9 @@ public class PanelDevolucionesUser extends javax.swing.JPanel {
 
     //Este metodo me carga todos los Prestamos
     public void CargarLibrosPrestados() {
-        for (Prestamo prestamo : vs.gestor.usuario.getPrestamo()) {
-            TablaDinamico(prestamo.getLibro().getTitulo(), "" + prestamo.getUsuario().getId(),
-                    "" + prestamo.getFechaPrestamo(), "" + prestamo.getFechaEntrega(),
+        for (Prestamo prestamo : vs.gestor.usuario.getEstrega()) {
+            TablaDinamico(prestamo.getLibro().getTitulo(), "" + prestamo.getUsuario().getId()
+                    ,"" + prestamo.getFechaPrestamo(), "" + prestamo.getFechaEntregado(),
                     prestamo.getObservacion());
         }
     }
@@ -39,16 +37,16 @@ public class PanelDevolucionesUser extends javax.swing.JPanel {
     public void MostrarTabla() {
         Tabla.setDefaultRenderer(Object.class, new AcVista());
         modelotabla.setColumnIdentifiers(new String[]{"TITULO",
-            "ID_USUARIO", "FECHA PRESTAMO", "FECHA ENTRAGAR", "OBSERVACION",""});
+            "ID_USUARIO", "FECHA SACADO", "FECHA ENTREGADO", "OBSERVACION", ""});
         Tabla.setModel(modelotabla);
         Tabla.setRowHeight(20);
         CargarLibrosPrestados();
     }
 //este metodo ingresa cosas en la tabla
 
-    public void TablaDinamico(String libro, String usuario, String Fprestamo, String Fentrga, String obs) {
+    public void TablaDinamico(String libro, String usuario,String Fsacad, String Fentrgo, String obs) {
         boton1.setText("ENTRAGAR");
-        Object struct[] = {libro, usuario, Fprestamo, Fentrga, obs, boton1};
+        Object struct[] = {libro, usuario,Fsacad, Fentrgo, obs, boton1};
         modelotabla.addRow(struct);
 
     }
@@ -106,12 +104,7 @@ public class PanelDevolucionesUser extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
-        columna = Tabla.getColumnModel().getColumnIndexAtX(evt.getX());
-        row = evt.getY() / Tabla.getRowHeight();
-        if (columna == 5 ) {
-               vs.gestor.GenerarDevolucion(row,""+Tabla.getValueAt(row, 0));
-               vs.cambiarPaguina(new PanelDevolucionesUser(vs));
-        }
+
     }//GEN-LAST:event_TablaMouseClicked
 
 

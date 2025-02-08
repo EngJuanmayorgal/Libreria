@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package GUI;
 
 import Modelo.Prestamo;
@@ -25,25 +21,25 @@ public class PanelPrestamosAdmin extends javax.swing.JPanel {
     //Este metodo me carga todos los Prestamos
     public void CargarPrestamos() {
         for (Prestamo prestamo : vs.gestor.prestamos) {
-            TablaDinamico(prestamo.getLibro().getTitulo(), "" + prestamo.getUsuario().getId(),
-                     "" + prestamo.getFechaPrestamo(), "" + prestamo.getFechaEntrega(),
-                     prestamo.getObservacion());
+            TablaDinamico(prestamo.getIdPrestamo(), prestamo.getLibro().getTitulo(), "" + prestamo.getUsuario().getId(),
+                    "" + prestamo.getFechaPrestamo(), "" + prestamo.getFechaEntrega(),
+                    prestamo.getObservacion());
         }
     }
 //Este metodo configura la Tabla
 
     public void MostrarTabla() {
         Tabla.setDefaultRenderer(Object.class, new AcVista());
-        modelotabla.setColumnIdentifiers(new String[]{"TITULO",
-            "ID_USUARIO", "FECHA PRESTAMO", "FECHA ENTRAGAR", "OBSERVACION"});
+        modelotabla.setColumnIdentifiers(new String[]{"ID", "TITULO",
+            "ID_USUARIO", "FECHA PRESTAMO", "FECHA ENTREGAR", "OBSERVACION"});
         Tabla.setModel(modelotabla);
         Tabla.setRowHeight(20);
         CargarPrestamos();
     }
 //este metodo ingresa cosas en la tabla
 
-    public void TablaDinamico(String libro, String usuario, String Fprestamo, String Fentrga, String obs) {
-        Object struct[] = {libro, usuario, Fprestamo, Fentrga,obs};
+    public void TablaDinamico(int id, String libro, String usuario, String Fprestamo, String Fentrga, String obs) {
+        Object struct[] = {id, libro, usuario, Fprestamo, Fentrga, obs};
         modelotabla.addRow(struct);
 
     }

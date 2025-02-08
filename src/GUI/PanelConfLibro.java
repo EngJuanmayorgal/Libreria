@@ -21,7 +21,7 @@ public class PanelConfLibro extends javax.swing.JPanel {
     public PanelConfLibro(int libro, VistaPrincipalAdmin vs) {
         initComponents();
         this.vs = vs;
-        this.libro = libro;
+        this.libro = vs.gestor.getLibros().get(libro).getIdLibro();
         title.setText("Editar Libro");
         titulo.setText(vs.gestor.getLibros().get(libro).getTitulo());
         autor.setText(vs.gestor.getLibros().get(libro).getAutor());

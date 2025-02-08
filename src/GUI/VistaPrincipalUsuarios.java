@@ -140,11 +140,11 @@ public class VistaPrincipalUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_PrestamosMouseClicked
 
     private void DevolucionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DevolucionesMouseClicked
-       
+        cambiarPaguina(new PanelDevolucionesUser(this));
     }//GEN-LAST:event_DevolucionesMouseClicked
 
     private void UsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsuarioMouseClicked
-       
+        cambiarPaguina(new PanelDatos());      
     }//GEN-LAST:event_UsuarioMouseClicked
 
     private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked

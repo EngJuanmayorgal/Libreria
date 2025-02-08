@@ -21,8 +21,7 @@ public class GestorLibreria {
 
     public GestorLibreria() {
         this.libros = new Serializacion().DeserializarLibros();
-        this.prestamos =new Serializacion().DeserializarPrestamos();
-        System.out.println(prestamos.size());
+        this.prestamos = new Serializacion().DeserializarPrestamos();
         this.admins = new GestorAdmin(this);
         VistaIngresar();
         this.usuarios = new GestorUsuario(this);
@@ -39,17 +38,25 @@ public class GestorLibreria {
 //Este metodo me crea un libro nuevo con los parametros q recibe
 
     public void AgregarLibro(String title, String autor, String genero, int disponibilidad) {
-        libros.add(new Libro(title, autor, genero, disponibilidad));
+        libros.add(new Libro(idRamdonLibro(), title, autor, genero, disponibilidad));
         new Serializacion().SerializarLibros(libros);
     }
 //este metodo recibe la posicion del libro y la edita
 //con los nuevos parametros    
 
     public void EditarLibro(int libro, String title, String autor, String genero, int disponible) {
-        libros.get(libro).setTitulo(title);
-        libros.get(libro).setAutor(autor);
-        libros.get(libro).setGenero(genero);
-        libros.get(libro).setDisponible(disponible);
+       for (Prestamo prestamo : prestamos) {
+            if (prestamo.getLibro().getIdLibro()==libro) {
+               prestamo.getLibro().setTitulo(title);
+               prestamo.getLibro().setAutor(autor);
+                prestamo.getLibro().setGenero(genero);
+               prestamo.getLibro().setDisponible(disponible);
+            }
+        }
+        libros.get(EncontrarLibro1(libro)).setAutor(autor);
+        libros.get(EncontrarLibro1(libro)).setGenero(genero);
+        libros.get(EncontrarLibro1(libro)).setDisponible(disponible);
+        libros.get(EncontrarLibro1(libro)).setTitulo(title);
         new Serializacion().SerializarLibros(libros);
     }
 //este metodo elimina un libro en la posicion q recibe
@@ -59,7 +66,7 @@ public class GestorLibreria {
         new Serializacion().SerializarLibros(libros);
     }
 
-//este metodo me ayuda a encontrar un libro
+//este metodo me ayuda a encontrar un libro por su titulo
     public Libro EncontrarLibro(String titulo) {
         for (Libro libro : libros) {
             if (libro.getTitulo().equalsIgnoreCase(titulo)) {
@@ -67,6 +74,28 @@ public class GestorLibreria {
             }
         }
         return null;
+    }
+//este metodo me ayuda a encontrar un libro por su id
+    public Libro EncontrarLibro(int id) {
+        for (Libro libro : libros) {
+            if (libro.getIdLibro()==id) {
+                return libro;
+            }
+        }
+        return null;
+    }
+    
+    
+    //este metodo me ayuda a encontrar un libro por su id y me devuelve su posicion
+    public int EncontrarLibro1(int id) {
+        int i=0;
+        for (Libro libro : libros) {
+            if (libro.getIdLibro()==id) {
+                return i;
+            }
+            i++;
+        }
+        return 0;
     }
 
 // este metodo me orgamiza los libros mas prestados de manera descendente   
@@ -91,6 +120,42 @@ public class GestorLibreria {
         for (Map.Entry<String, Integer> entry : listaOrdenada) {
             PE.TablaDinamico(entry.getKey(), "" + entry.getValue());
         }
+    }
+
+    //este metodo me ayuda a encontrar un prestamo 
+    public Prestamo EncontrarPrestamo(int id) {
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.getIdPrestamo() == id) {
+                return prestamo;
+            }
+        }
+        return null;
+    }
+
+    //este metodo se asegura q no alla ningun prestamo con el mismo id
+    public int idRamdonPrestamo() {
+        Random random = new Random();
+        int id = random.nextInt(1, 500);
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.getIdPrestamo() == id) {
+                id = idRamdonPrestamo();
+                break;
+            }
+        }
+        return id;
+    }
+
+    //este metodo se asegura q no alla ningun libro con el mismo id
+    public int idRamdonLibro() {
+        Random random = new Random();
+        int id = random.nextInt(1, 500);
+        for (Libro libro : libros) {
+            if (libro.getIdLibro() == id) {
+                id = idRamdonLibro();
+                break;
+            }
+        }
+        return id;
     }
 
     public ArrayList<Libro> getLibros() {

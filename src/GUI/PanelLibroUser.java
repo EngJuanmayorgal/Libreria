@@ -107,7 +107,7 @@ public class PanelLibroUser extends javax.swing.JPanel {
         columna = Tabla.getColumnModel().getColumnIndexAtX(evt.getX());
         row = evt.getY() / Tabla.getRowHeight();
         if (columna == 4 && vs.gestor.librosdis.get(row).getDisponible() > 0) {
-            vs.gestor.GenerarPrestamo(row);
+            vs.gestor.GenerarPrestamo(""+Tabla.getValueAt(row, 0),row);
             vs.cambiarPaguina(new PanelLibroUser(vs));
         }
     }//GEN-LAST:event_TablaMouseClicked

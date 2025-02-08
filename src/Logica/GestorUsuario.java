@@ -78,13 +78,16 @@ public class GestorUsuario {
 //este metodo me genera los prestamos tanto a nivel de usuario como
 //en gestorlibreria
 
-    public void GenerarPrestamo(int libro) {
+    public void GenerarPrestamo(String titulo, int libro) {
         LocalDate date = LocalDate.now();
         Month month = Month.of((date.getMonth().getValue()) + 1);
         LocalDate date2 = LocalDate.of(date.getYear(), month, date.getDayOfMonth());
-        gestor.prestamos.add(new Prestamo(librosdis.get(libro), usuario, date, date2));
-        usuario.getPrestamo().add(new Prestamo(librosdis.get(libro), usuario, date, date2));
-        gestor.getLibros().get(libro).setDisponible(gestor.getLibros().get(libro).getDisponible() - 1);
+        Prestamo prestamo
+                = new Prestamo(librosdis.get(libro), usuario, date, date2, gestor.idRamdonPrestamo());
+        gestor.prestamos.add(prestamo);
+        usuario.getPrestamo().add(prestamo);
+        gestor.EncontrarLibro(titulo).setDisponible(gestor.EncontrarLibro(titulo)
+                .getDisponible() - 1);
         librosdis.remove(libro);
         new Serializacion().SerializarUsuarios(usuarios);
         new Serializacion().SerializarLibros(gestor.getLibros());
@@ -93,16 +96,16 @@ public class GestorUsuario {
 //este metodo me genera la devolucion de un libro
 //lo cuale elimina el prestamo de usauario y lo agrega a entragdo de usuario
 
-    public void GenerarDevolucion(int libro, String title) {
-        usuario.getPrestamo().get(libro).setFechaEntregado(LocalDate.MIN);
+    public void GenerarDevolucion(int libro, int id, int idlibro) {
+        usuario.getPrestamo().get(libro).setFechaEntregado(LocalDate.now());
         usuario.getPrestamo().get(libro).setObservacion("ENTREGADO");
-        gestor.prestamos.get(libro).setObservacion("ENTREGADO");               
+        gestor.EncontrarPrestamo(id).setObservacion("ENTREGADO");
+        gestor.EncontrarLibro(idlibro).setDisponible(gestor.EncontrarLibro(idlibro)
+               .getDisponible() + 1);
         usuario.getEstrega().add(usuario.getPrestamo().get(libro));
-        gestor.EncontrarLibro(usuario.getPrestamo().get(libro).getLibro().getTitulo())
-                .setDisponible(gestor.EncontrarLibro(usuario.getPrestamo()
-                        .get(libro).getLibro().getTitulo()).getDisponible() + 1);
         usuario.getPrestamo().remove(libro);
         new Serializacion().SerializarUsuarios(usuarios);
+        new Serializacion().SerializarPrestamos(gestor.prestamos);
         new Serializacion().SerializarLibros(gestor.getLibros());
         LibresDipo();
     }

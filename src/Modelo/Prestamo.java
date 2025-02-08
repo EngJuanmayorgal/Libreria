@@ -7,7 +7,7 @@ package Modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Prestamo implements Serializable{
+public class Prestamo implements Serializable {
 
     private Libro libro;
     private Usuario usuario;
@@ -15,13 +15,23 @@ public class Prestamo implements Serializable{
     private LocalDate fechaEntrega;
     private LocalDate fechaEntregado;
     private String observacion;
+    private int idPrestamo;
 
-    public Prestamo(Libro libro, Usuario usuario, LocalDate fechaPrestamo, LocalDate fechaEntrega) {
+    public Prestamo(Libro libro, Usuario usuario, LocalDate fechaPrestamo, LocalDate fechaEntrega, int idPrestamo) {
         this.libro = libro;
         this.usuario = usuario;
-        this.observacion="NO ENTEGADO";
+        this.observacion = "NO ENTEGADO";
         this.fechaPrestamo = fechaPrestamo;
         this.fechaEntrega = fechaEntrega;
+        this.idPrestamo = idPrestamo;
+    }
+
+    public int getIdPrestamo() {
+        return idPrestamo;
+    }
+
+    public void setIdPrestamo(int idPrestamo) {
+        this.idPrestamo = idPrestamo;
     }
 
     public String getObservacion() {
