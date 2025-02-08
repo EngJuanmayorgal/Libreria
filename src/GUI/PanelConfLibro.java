@@ -23,12 +23,11 @@ public class PanelConfLibro extends javax.swing.JPanel {
         this.vs = vs;
         this.libro = libro;
         title.setText("Editar Libro");
-        titulo.setText(vs.gestor.libros.get(libro).getTitulo());
-        autor.setText(vs.gestor.libros.get(libro).getAutor());
-        genero.setText(vs.gestor.libros.get(libro).getGenero());
-        dispo.setText("" + vs.gestor.libros.get(libro).getDisponible());
+        titulo.setText(vs.gestor.getLibros().get(libro).getTitulo());
+        autor.setText(vs.gestor.getLibros().get(libro).getAutor());
+        genero.setText(vs.gestor.getLibros().get(libro).getGenero());
+        dispo.setText("" + vs.gestor.getLibros().get(libro).getDisponible());
         boton.setText("EDITAR");
-        Limpiar();
     }
 
     public PanelConfLibro(VistaPrincipalAdmin vs) {

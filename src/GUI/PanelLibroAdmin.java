@@ -28,7 +28,7 @@ public class PanelLibroAdmin extends javax.swing.JPanel {
 //Este metodo me carga todos los libros
 
     public void CargarLibros() {
-        for (Libro libro : vs.gestor.libros) {
+        for (Libro libro : vs.gestor.getLibros()) {
             TablaDinamico(libro.getTitulo(), libro.getAutor(), libro.getGenero(), libro.getDisponible());
         }
     }

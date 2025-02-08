@@ -5,26 +5,28 @@
 package Logica;
 
 import Modelo.Administrador;
+import Modelo.Serializacion;
 import java.util.ArrayList;
 
 public class GestorAdmin {
 
     private ArrayList<Administrador> admins;
-    private GestorLibreria gestor;
 
     public GestorAdmin(GestorLibreria gestor) {
-        this.gestor = gestor;
-        admins = new ArrayList<>();
-        CrearAdmin("1", "1", 1, 1);
+        admins = new Serializacion().DeserializarAdmins();
+        System.out.println(admins.size());
+        new Serializacion().SerializarAdmins(admins);
     }
 
 //Este metodo me crea un administrador y me lo agrega a lalista admins
     public void CrearAdmin(String pass, String name, int id, int number) {
         admins.add(new Administrador(pass, name, id, number));
+        new Serializacion().SerializarAdmins(admins);
     }
 
 //Este metodo busca si existe el admin
     public boolean EncontrarAdmin(int id) {
+        admins = new Serializacion().DeserializarAdmins();
         for (Administrador admin : admins) {
             if (admin.getId() == id) {
                 return true;

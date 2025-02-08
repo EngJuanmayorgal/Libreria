@@ -4,26 +4,44 @@
  */
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Prestamo {
+public class Prestamo implements Serializable{
 
     private Libro libro;
     private Usuario usuario;
     private LocalDate fechaPrestamo;
     private LocalDate fechaEntrega;
-    private boolean entTiempo;
-    private boolean entTarde;
+    private LocalDate fechaEntregado;
+    private String observacion;
 
     public Prestamo(Libro libro, Usuario usuario, LocalDate fechaPrestamo, LocalDate fechaEntrega) {
         this.libro = libro;
         this.usuario = usuario;
+        this.observacion="NO ENTEGADO";
         this.fechaPrestamo = fechaPrestamo;
         this.fechaEntrega = fechaEntrega;
     }
 
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
     public Libro getLibro() {
         return libro;
+    }
+
+    public LocalDate getFechaEntregado() {
+        return fechaEntregado;
+    }
+
+    public void setFechaEntregado(LocalDate fechaEntregado) {
+        this.fechaEntregado = fechaEntregado;
     }
 
     public void setLibro(Libro libro) {
@@ -48,16 +66,6 @@ public class Prestamo {
 
     public LocalDate getFechaEntrega() {
         return fechaEntrega;
-    }
-
-    public String Obsrvacion() {
-        if (entTiempo) {
-            return "A TIEMPO";
-        }
-        if (entTarde) {
-            return "TARDE";
-        }
-        return "NO ENTREGADO";
     }
 
     public void setFechaEntrega(LocalDate fechaEntrega) {

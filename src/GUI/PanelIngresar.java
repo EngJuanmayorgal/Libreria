@@ -1,16 +1,8 @@
-/**
- *
- *
- *
- * */
+
 package GUI;
 
 import java.awt.Color;
 
-/**
- *
- * @author ADMIN
- */
 public class PanelIngresar extends javax.swing.JPanel {
 
     private final VistaIngresar vs;
@@ -249,6 +241,7 @@ public class PanelIngresar extends javax.swing.JPanel {
     private void BingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BingresarMouseClicked
         if (Admin.isSelected()) {
             if (vs.gestor.admins.EncontrarAdmin(Integer.parseInt(id.getText()))) {
+                System.out.println("s");
                 if (!vs.gestor.admins.ConfirmarClave(Integer.parseInt(id.getText()), pass.getText())) {
                     error1.setText("*");
                 } else {

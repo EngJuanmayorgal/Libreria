@@ -14,9 +14,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PanelLibroUser extends javax.swing.JPanel {
 
-        public VistaPrincipalUsuarios vs;
+    public VistaPrincipalUsuarios vs;
     public static int columna, row;
     javax.swing.JButton boton1 = new javax.swing.JButton();
+    javax.swing.JButton boton2 = new javax.swing.JButton();
     DefaultTableModel modelotabla = new DefaultTableModel();
 
     public PanelLibroUser(VistaPrincipalUsuarios vs) {
@@ -26,13 +27,13 @@ public class PanelLibroUser extends javax.swing.JPanel {
     }
 
     //Este metodo me carga todos los libros
-
     public void CargarLibros() {
         for (Libro libro : vs.gestor.librosdis) {
             TablaDinamico(libro.getTitulo(), libro.getAutor(), libro.getGenero(), libro.getDisponible());
         }
     }
 //Este metodo configura la Tabla
+
     public void MostrarTabla() {
         Tabla.setDefaultRenderer(Object.class, new AcVista());
         modelotabla.setColumnIdentifiers(new String[]{"TITULO",
@@ -42,11 +43,19 @@ public class PanelLibroUser extends javax.swing.JPanel {
         CargarLibros();
     }
 //este metodo ingresa cosas en la tabla
+
     public void TablaDinamico(String title, String autor, String gene, int dispo) {
         boton1.setText("PEDIR");
-        Object struct[] = {title, autor, gene, dispo, boton1};
-        modelotabla.addRow(struct);
-
+        
+        if (dispo == 0) {
+            boton2.setText("NO DISPONIBLE");
+            boton2.setEnabled(false);
+            Object struct[] = {title, autor, gene, dispo, boton2};
+            modelotabla.addRow(struct);
+        } else {
+            Object struct[] = {title, autor, gene, dispo, boton1};
+            modelotabla.addRow(struct);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -97,9 +106,9 @@ public class PanelLibroUser extends javax.swing.JPanel {
     private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
         columna = Tabla.getColumnModel().getColumnIndexAtX(evt.getX());
         row = evt.getY() / Tabla.getRowHeight();
-        if (columna==4) {
-           vs.gestor.GenerarPrestamo(row, vs.gestor.idUsuario);
-           vs.cambiarPaguina(new PanelLibroUser(vs));
+        if (columna == 4 && vs.gestor.librosdis.get(row).getDisponible() > 0) {
+            vs.gestor.GenerarPrestamo(row);
+            vs.cambiarPaguina(new PanelLibroUser(vs));
         }
     }//GEN-LAST:event_TablaMouseClicked
 

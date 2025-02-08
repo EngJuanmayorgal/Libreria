@@ -1,9 +1,11 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * 
+ * 
  */
 package GUI;
 
+import static GUI.PanelLibroUser.columna;
+import static GUI.PanelLibroUser.row;
 import Modelo.Prestamo;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,23 +13,25 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ADMIN
  */
-public class PanelPrestamosAdmin extends javax.swing.JPanel {
+public class PanelDevolucionesUser extends javax.swing.JPanel {
 
-    public VistaPrincipalAdmin vs;
+    public VistaPrincipalUsuarios vs;
+    public static int columna, row;
+    javax.swing.JButton boton1 = new javax.swing.JButton();
     DefaultTableModel modelotabla = new DefaultTableModel();
 
-    public PanelPrestamosAdmin(VistaPrincipalAdmin vs) {
+    public PanelDevolucionesUser(VistaPrincipalUsuarios vs) {
         this.vs = vs;
         initComponents();
         MostrarTabla();
     }
 
     //Este metodo me carga todos los Prestamos
-    public void CargarPrestamos() {
-        for (Prestamo prestamo : vs.gestor.prestamos) {
+    public void CargarLibrosPrestados() {
+        for (Prestamo prestamo : vs.gestor.usuario.getPrestamo()) {
             TablaDinamico(prestamo.getLibro().getTitulo(), "" + prestamo.getUsuario().getId(),
-                     "" + prestamo.getFechaPrestamo(), "" + prestamo.getFechaEntrega(),
-                     prestamo.getObservacion());
+                    "" + prestamo.getFechaPrestamo(), "" + prestamo.getFechaEntrega(),
+                    prestamo.getObservacion());
         }
     }
 //Este metodo configura la Tabla
@@ -35,15 +39,16 @@ public class PanelPrestamosAdmin extends javax.swing.JPanel {
     public void MostrarTabla() {
         Tabla.setDefaultRenderer(Object.class, new AcVista());
         modelotabla.setColumnIdentifiers(new String[]{"TITULO",
-            "ID_USUARIO", "FECHA PRESTAMO", "FECHA ENTRAGAR", "OBSERVACION"});
+            "ID_USUARIO", "FECHA PRESTAMO", "FECHA ENTRAGAR", "OBSERVACION",""});
         Tabla.setModel(modelotabla);
         Tabla.setRowHeight(20);
-        CargarPrestamos();
+        CargarLibrosPrestados();
     }
 //este metodo ingresa cosas en la tabla
 
     public void TablaDinamico(String libro, String usuario, String Fprestamo, String Fentrga, String obs) {
-        Object struct[] = {libro, usuario, Fprestamo, Fentrga,obs};
+        boton1.setText("ENTRAGAR");
+        Object struct[] = {libro, usuario, Fprestamo, Fentrga, obs, boton1};
         modelotabla.addRow(struct);
 
     }
@@ -101,7 +106,12 @@ public class PanelPrestamosAdmin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
-
+        columna = Tabla.getColumnModel().getColumnIndexAtX(evt.getX());
+        row = evt.getY() / Tabla.getRowHeight();
+        if (columna == 5 ) {
+               vs.gestor.GenerarDevolucion(row,""+Tabla.getValueAt(row, 0));
+               vs.cambiarPaguina(new PanelDevolucionesUser(vs));
+        }
     }//GEN-LAST:event_TablaMouseClicked
 
 
