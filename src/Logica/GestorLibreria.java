@@ -8,6 +8,7 @@ import GUI.PanelEstadisticas;
 import GUI.VistaIngresar;
 import GUI.VistaPrincipalAdmin;
 import Modelo.*;
+import java.time.LocalDate;
 import java.util.*;
 
 public class GestorLibreria {
@@ -23,10 +24,12 @@ public class GestorLibreria {
         this.libros = new Serializacion().DeserializarLibros();
         this.prestamos = new Serializacion().DeserializarPrestamos();
         this.admins = new GestorAdmin(this);
+        RevisarPrestamo();
         VistaIngresar();
         this.usuarios = new GestorUsuario(this);
     }
 
+//este metodo me crea la pantalla para ingresar
     public void VistaIngresar() {
         vistaIngre = new VistaIngresar(this);
     }
@@ -35,37 +38,39 @@ public class GestorLibreria {
     public void VistaAppAdmin(int o) {
         vistaApp = new VistaPrincipalAdmin(this);
     }
-//Este metodo me crea un libro nuevo con los parametros q recibe
 
+//Este metodo me crea un libro nuevo con los parametros q recibe
     public void AgregarLibro(String title, String autor, String genero, int disponibilidad) {
         libros.add(new Libro(idRamdonLibro(), title, autor, genero, disponibilidad));
         new Serializacion().SerializarLibros(libros);
     }
+
 //este metodo recibe la posicion del libro y la edita
 //con los nuevos parametros    
-
     public void EditarLibro(int libro, String title, String autor, String genero, int disponible) {
-       for (Prestamo prestamo : prestamos) {
-            if (prestamo.getLibro().getIdLibro()==libro) {
-               prestamo.getLibro().setTitulo(title);
-               prestamo.getLibro().setAutor(autor);
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.getLibro().getIdLibro() == libro) {
+                prestamo.getLibro().setTitulo(title);
+                prestamo.getLibro().setAutor(autor);
                 prestamo.getLibro().setGenero(genero);
-               prestamo.getLibro().setDisponible(disponible);
+                prestamo.getLibro().setDisponible(disponible);
             }
         }
-        libros.get(EncontrarLibro1(libro)).setAutor(autor);
-        libros.get(EncontrarLibro1(libro)).setGenero(genero);
-        libros.get(EncontrarLibro1(libro)).setDisponible(disponible);
-        libros.get(EncontrarLibro1(libro)).setTitulo(title);
+        libros.get(EncontrarLibroId(libro)).setAutor(autor);
+        libros.get(EncontrarLibroId(libro)).setGenero(genero);
+        libros.get(EncontrarLibroId(libro)).setDisponible(disponible);
+        libros.get(EncontrarLibroId(libro)).setTitulo(title);
         new Serializacion().SerializarLibros(libros);
     }
-//este metodo elimina un libro en la posicion q recibe
 
+//este metodo elimina un libro en la posicion q recibe
     public void EliminarLibro(int libro) {
         libros.remove(libro);
         new Serializacion().SerializarLibros(libros);
     }
 
+//En los siguientes dos metodos se evidencia polimorfismo     
+//Ya q el metodo se llama igual pero al reciben diferentes datos
 //este metodo me ayuda a encontrar un libro por su titulo
     public Libro EncontrarLibro(String titulo) {
         for (Libro libro : libros) {
@@ -76,21 +81,21 @@ public class GestorLibreria {
         return null;
     }
 //este metodo me ayuda a encontrar un libro por su id
+
     public Libro EncontrarLibro(int id) {
         for (Libro libro : libros) {
-            if (libro.getIdLibro()==id) {
+            if (libro.getIdLibro() == id) {
                 return libro;
             }
         }
         return null;
     }
-    
-    
-    //este metodo me ayuda a encontrar un libro por su id y me devuelve su posicion
-    public int EncontrarLibro1(int id) {
-        int i=0;
+
+//este metodo me ayuda a encontrar un libro por su id y me devuelve su posicion
+    public int EncontrarLibroId(int id) {
+        int i = 0;
         for (Libro libro : libros) {
-            if (libro.getIdLibro()==id) {
+            if (libro.getIdLibro() == id) {
                 return i;
             }
             i++;
@@ -122,7 +127,7 @@ public class GestorLibreria {
         }
     }
 
-    //este metodo me ayuda a encontrar un prestamo 
+//este metodo me ayuda a encontrar un prestamo 
     public Prestamo EncontrarPrestamo(int id) {
         for (Prestamo prestamo : prestamos) {
             if (prestamo.getIdPrestamo() == id) {
@@ -132,7 +137,7 @@ public class GestorLibreria {
         return null;
     }
 
-    //este metodo se asegura q no alla ningun prestamo con el mismo id
+//este metodo se asegura q no alla ningun prestamo con el mismo id
     public int idRamdonPrestamo() {
         Random random = new Random();
         int id = random.nextInt(1, 500);
@@ -145,7 +150,7 @@ public class GestorLibreria {
         return id;
     }
 
-    //este metodo se asegura q no alla ningun libro con el mismo id
+//este metodo se asegura q no alla ningun libro con el mismo id
     public int idRamdonLibro() {
         Random random = new Random();
         int id = random.nextInt(1, 500);
@@ -158,6 +163,19 @@ public class GestorLibreria {
         return id;
     }
 
+//este metodo revisa todas las fechas de los prestamos 
+//y revisa q todavia esten a tiempo de lo contrario cambia la observacion a 
+//retardado
+    public void RevisarPrestamo() {
+        LocalDate hoy = LocalDate.now();
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.getFechaEntrega().isBefore(hoy) && prestamo.getFechaEntregado() == null) {
+                prestamo.setObservacion("RETRASADO");
+            }
+        }
+    }
+
+//este metodo me devuelve la lista libros    
     public ArrayList<Libro> getLibros() {
         return libros;
     }

@@ -76,6 +76,11 @@ public class VistaPrincipalAdmin extends javax.swing.JFrame {
         jPanel1.add(Amin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 140, 50));
 
         Multas.setText("MULTAS");
+        Multas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MultasMouseClicked(evt);
+            }
+        });
         jPanel1.add(Multas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 140, 50));
 
         Usuarios.setText("USUARIOS");
@@ -146,8 +151,7 @@ public class VistaPrincipalAdmin extends javax.swing.JFrame {
 
     private void LibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibrosMouseClicked
         Panel.setOpaque(true);
-        cambiarPaguina(new PanelLibroAdmin(this));
-        
+        cambiarPaguina(new PanelLibroAdmin(this));        
     }//GEN-LAST:event_LibrosMouseClicked
 
     private void PrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrestamosMouseClicked
@@ -168,8 +172,19 @@ public class VistaPrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitMouseClicked
 
     private void AminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AminMouseClicked
-        cambiarPaguina(new PanelDatos());
+        PanelDatos panel=new PanelDatos();
+        panel.title.setText("DATOS ADMINISTRADOR");
+        panel.name.setText(gestor.admins.admin.getName());
+        panel.id.setText(""+gestor.admins.admin.getId());
+        panel.numero.setText(""+gestor.admins.admin.getNumber());
+        panel.labelinfo.setText("CONTRASEÑA:");
+        panel.info.setText(gestor.admins.admin.getPass());
+        cambiarPaguina(panel);
     }//GEN-LAST:event_AminMouseClicked
+
+    private void MultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MultasMouseClicked
+       cambiarPaguina(new PanelMultasAdmin(this));
+    }//GEN-LAST:event_MultasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Amin;

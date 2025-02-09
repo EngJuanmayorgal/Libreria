@@ -23,19 +23,111 @@ public class PanelDatos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        title = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        labelinfo = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        numero = new javax.swing.JLabel();
+        info = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        title.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("title");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("NOMBRE:");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("ID:");
+
+        labelinfo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelinfo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelinfo.setText("DIRECCION:");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("NUMERO:");
+
+        name.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name.setText("NOMBRE:");
+
+        id.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        id.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        id.setText("ID:");
+
+        numero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        numero.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        numero.setText("NUMERO:");
+
+        info.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        info.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        info.setText("DIRECCION:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 491, Short.MAX_VALUE)
+            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(numero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(info, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 402, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel2)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel4)
+                        .addGap(33, 33, 33)
+                        .addComponent(labelinfo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(name)
+                        .addGap(33, 33, 33)
+                        .addComponent(id)
+                        .addGap(33, 33, 33)
+                        .addComponent(numero)
+                        .addGap(33, 33, 33)
+                        .addComponent(info)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel id;
+    public javax.swing.JLabel info;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel labelinfo;
+    public javax.swing.JLabel name;
+    public javax.swing.JLabel numero;
+    public javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

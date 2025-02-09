@@ -35,7 +35,7 @@ public class PanelUsuarios extends javax.swing.JPanel {
     public void MostrarTabla() {
         Tabla.setDefaultRenderer(Object.class, new AcVista());
         modelotabla.setColumnIdentifiers(new String[]{"NOMBRE",
-            "ID", "NUMERO", "DIRECCION", "PRESTAMOS ECHOS"});
+            "ID", "NUMERO", "DIRECCION", "PRESTAMOS PENDIENTES"});
         Tabla.setModel(modelotabla);
         Tabla.setRowHeight(20);
         CargarUsuarios();

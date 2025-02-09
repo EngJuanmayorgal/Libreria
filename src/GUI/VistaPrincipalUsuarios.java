@@ -144,7 +144,14 @@ public class VistaPrincipalUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_DevolucionesMouseClicked
 
     private void UsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsuarioMouseClicked
-        cambiarPaguina(new PanelDatos());      
+        PanelDatos panel=new PanelDatos();
+        panel.title.setText("DATOS USUARIO");
+        panel.name.setText(gestor.usuario.getName());
+        panel.id.setText(""+gestor.usuario.getId());
+        panel.numero.setText(""+gestor.usuario.getNumber());
+        panel.labelinfo.setText("DIRECCION:");
+        panel.info.setText(gestor.usuario.getAddress());
+        cambiarPaguina(panel);      
     }//GEN-LAST:event_UsuarioMouseClicked
 
     private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked

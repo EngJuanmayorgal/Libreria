@@ -1,6 +1,5 @@
 /*
- * 
- * 
+ * esta clase es mi admin el cial puede modificar los libros
  */
 package Modelo;
 

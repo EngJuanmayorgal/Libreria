@@ -1,6 +1,5 @@
 /*
- * 
- * 
+ * esta es mi clase padre para la erencia colo los tipos de usuarios en la aplicacion
  */
 package Modelo;
 

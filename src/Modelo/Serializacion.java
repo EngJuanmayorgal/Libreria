@@ -1,3 +1,5 @@
+//esta clase es la encargada de serializar los datos importantes de la aplicacion
+
 package Modelo;
 
 import java.io.*;
@@ -55,10 +57,8 @@ public class Serializacion {
     public void SerializarPrestamos(ArrayList Prestamos) {
         try (FileOutputStream fileOut = new FileOutputStream("Prestamos.ser"); ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
             out.writeObject(Prestamos);
-            System.out.println("admin serie");
         } catch (IOException e) {
             System.out.println(e.toString());
-            System.out.println("no se serie admin");
         }
     }
 
@@ -66,10 +66,8 @@ public class Serializacion {
         ArrayList<Prestamo> Prestamos = new ArrayList<>();
         try (FileInputStream fileIn = new FileInputStream("Prestamos.ser"); ObjectInputStream in = new ObjectInputStream(fileIn)) {
             Prestamos = (ArrayList<Prestamo>) in.readObject();
-            System.out.println("pres deserie");
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(e.toString());
-            System.out.println("no se deserie pres");
         }
         return Prestamos;
     }

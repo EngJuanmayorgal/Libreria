@@ -1,6 +1,5 @@
 /*
- * 
- * 
+ * esta clase es la forma en la que se ve un prestammo
  */
 package Modelo;
 

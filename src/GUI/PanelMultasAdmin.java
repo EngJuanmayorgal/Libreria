@@ -11,13 +11,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ADMIN
  */
-public class PanelDevolucionesUser extends javax.swing.JPanel {
+public class PanelMultasAdmin extends javax.swing.JPanel {
 
-    public VistaPrincipalUsuarios vs;
+    public VistaPrincipalAdmin vs;
     public static int columna, row;
     DefaultTableModel modelotabla = new DefaultTableModel();
 
-    public PanelDevolucionesUser(VistaPrincipalUsuarios vs) {
+    public PanelMultasAdmin(VistaPrincipalAdmin vs) {
         this.vs = vs;
         initComponents();
         MostrarTabla();
@@ -25,10 +25,12 @@ public class PanelDevolucionesUser extends javax.swing.JPanel {
 
     //Este metodo me carga todos los Prestamos
     public void CargarLibrosPrestados() {
-        for (Prestamo prestamo : vs.gestor.usuario.getEstrega()) {
-            TablaDinamico(prestamo.getLibro().getTitulo(), "" + prestamo.getUsuario().getId()
-                    ,"" + prestamo.getFechaPrestamo(), "" + prestamo.getFechaEntregado(),
-                    prestamo.getObservacion());
+        for (Prestamo prestamo : vs.gestor.prestamos) {
+            if (prestamo.getObservacion().equalsIgnoreCase("MULTA")) {
+                TablaDinamico(prestamo.getLibro().getTitulo(), "" + prestamo.getUsuario().getId(),
+                         "" + prestamo.getFechaPrestamo(), "" + prestamo.getFechaEntregado(),
+                        prestamo.getObservacion());
+            }
         }
     }
 //Este metodo configura la Tabla
@@ -43,8 +45,8 @@ public class PanelDevolucionesUser extends javax.swing.JPanel {
     }
 //este metodo ingresa cosas en la tabla
 
-    public void TablaDinamico(String libro, String usuario,String Fsacad, String Fentrgo, String obs) {
-        Object struct[] = {libro, usuario,Fsacad, Fentrgo, obs};
+    public void TablaDinamico(String libro, String usuario, String Fsacad, String Fentrgo, String obs) {
+        Object struct[] = {libro, usuario, Fsacad, Fentrgo, obs};
         modelotabla.addRow(struct);
 
     }
@@ -78,7 +80,7 @@ public class PanelDevolucionesUser extends javax.swing.JPanel {
         jScrollPane1.setViewportView(Tabla);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("DEVOLUCIONES");
+        jLabel1.setText("MULTAS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

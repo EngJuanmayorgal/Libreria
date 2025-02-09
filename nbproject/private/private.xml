@@ -4,7 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Mcosas/Documentos/NetBeansProjects/Libreria/src/GUI/VistaPrincipalUsuarios.java</file>
+            <file>file:/C:/Mcosas/Documentos/NetBeansProjects/Libreria/src/GUI/VistaPrincipalAdmin.java</file>
             <file>file:/C:/Mcosas/Documentos/NetBeansProjects/Libreria/src/Logica/GestorUsuario.java</file>
+            <file>file:/C:/Mcosas/Documentos/NetBeansProjects/Libreria/src/GUI/PanelDatos.java</file>
+            <file>file:/C:/Mcosas/Documentos/NetBeansProjects/Libreria/src/GUI/PanelMultasadmin.java</file>
             <file>file:/C:/Mcosas/Documentos/NetBeansProjects/Libreria/src/Logica/GestorLibreria.java</file>
             <file>file:/C:/Mcosas/Documentos/NetBeansProjects/Libreria/src/GUI/PanelDevolucionesUser.java</file>
         </group>
